@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashique Mohammed | Skills</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script>
+tailwind.config = {
+theme: { extend: { colors:{ neon:{blue:"#00f3ff",purple:"#bc13fe",dark:"#050b14"} }, fontFamily:{ sans:["Outfit","sans-serif"], display:["Orbitron","sans-serif"] } } }
+}
+</script>
+
+<style>
+body{background:#050b14;color:white;overflow-x:hidden;}
+.glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);cursor:pointer;transition:0.3s;}
+.glass:hover{transform:scale(1.05);border-color:#00f3ff;}
+.neon-text{text-shadow:0 0 15px #00f3ff80;}
+.reveal{opacity:0;transform:translateY(40px);transition:0.9s;}
+.reveal.active{opacity:1;transform:translateY(0);}
+.bubble{position:relative;overflow:hidden;}
+.bubble span{position:absolute;width:100px;height:100px;background:rgba(0,243,255,0.3);border-radius:50%;transform:scale(0);opacity:0;pointer-events:none;animation:bubble 0.6s ease-out;}
+@keyframes bubble{to{transform:scale(4);opacity:0;}}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass py-4">
+<div class="max-w-7xl mx-auto flex justify-between px-6">
+<h1 class="font-display text-2xl tracking-widest">ASH<span class="text-neon-blue">.DEV</span></h1>
+<div class="hidden md:flex gap-8 text-sm">
+<a href="index.html" class="hover:text-neon-blue bubble">Home</a>
+<a href="about.html" class="hover:text-neon-blue bubble">About</a>
+<a href="skills.html" class="hover:text-neon-blue bubble">Skills</a>
+<a href="projects.html" class="hover:text-neon-blue bubble">Projects</a>
+<a href="contact.html" class="hover:text-neon-blue bubble">Contact</a>
+</div>
+</div>
+</nav>
+
+<!-- SKILLS SECTION -->
+<section class="py-20 min-h-screen">
+<div class="max-w-6xl mx-auto px-6 text-center">
+<h2 class="text-4xl font-display mb-10">TECHNICAL <span class="text-neon-blue">SKILLS</span></h2>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="glass p-6 rounded-xl reveal skill-card bubble">
+<i class="fab fa-html5 text-4xl text-orange-500"></i>
+<h3 class="mt-3 font-bold">HTML</h3>
+</div>
+<div class="glass p-6 rounded-xl reveal delay-100 skill-card bubble">
+<i class="fab fa-css3-alt text-4xl text-blue-500"></i>
+<h3 class="mt-3 font-bold">CSS / Tailwind</h3>
+</div>
+<div class="glass p-6 rounded-xl reveal delay-200 skill-card bubble">
+<i class="fab fa-js text-4xl text-yellow-400"></i>
+<h3 class="mt-3 font-bold">JavaScript</h3>
+</div>
+<div class="glass p-6 rounded-xl reveal delay-300 skill-card bubble">
+<i class="fab fa-react text-4xl text-cyan-400"></i>
+<h3 class="mt-3 font-bold">React JS</h3>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-6 text-center text-gray-500 text-sm">
+© 2025 Ashique Mohammed. All Rights Reserved.
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll(".reveal");
+function reveal(){reveals.forEach(el=>{const rect=el.getBoundingClientRect();if(rect.top<window.innerHeight-60)el.classList.add("active");});}
+window.addEventListener("scroll",reveal);reveal();
+
+// Bubble click effect
+document.querySelectorAll('.bubble').forEach(el=>{
+el.addEventListener('click',function(e){
+const circle=document.createElement('span');
+circle.style.left=`${e.offsetX-50}px`;
+circle.style.top=`${e.offsetY-50}px`;
+this.appendChild(circle);
+setTimeout(()=>circle.remove(),600);
+});
+});
+
+// Skill card click animation (pop + glow)
+document.querySelectorAll('.skill-card').forEach(card=>{
+card.addEventListener('click', ()=>{
+card.style.transform = 'scale(1.15)';
+card.style.boxShadow = '0 0 30px #00f3ff';
+setTimeout(()=>{
+card.style.transform = '';
+card.style.boxShadow = '';
+},300);
+});
+});
+</script>
+
+</body>
+</html>

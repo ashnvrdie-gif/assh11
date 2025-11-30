@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashique Mohammed | Projects</title>
+    <meta name="description" content="Portfolio of Ashique Mohammed - Projects">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: { blue: "#00f3ff", purple: "#bc13fe", dark: "#050b14" }
+                    },
+                    fontFamily: {
+                        sans: ["Outfit", "sans-serif"],
+                        display: ["Orbitron", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background: #050b14; color: white; overflow-x: hidden; }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .reveal { opacity:0; transform:translateY(40px); transition:0.9s; }
+        .reveal.active { opacity:1; transform:translateY(0); }
+
+        /* Bubble click effect */
+        .bubble {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .bubble span {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 243, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            opacity: 0.6;
+            pointer-events: none;
+            animation: bubble 0.6s ease-out forwards;
+        }
+        @keyframes bubble {
+            0% { transform: scale(0); opacity: 0.6; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+
+        /* Card hover */
+        .card-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff80;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass py-4">
+    <div class="max-w-7xl mx-auto flex justify-between px-6">
+        <h1 class="font-display text-2xl tracking-widest">ASH<span class="text-neon-blue">.DEV</span></h1>
+        <div class="hidden md:flex gap-8 text-sm">
+            <a href="index.html" class="hover:text-neon-blue bubble">Home</a>
+            <a href="about.html" class="hover:text-neon-blue bubble">About</a>
+            <a href="skills.html" class="hover:text-neon-blue bubble">Skills</a>
+            <a href="projects.html" class="hover:text-neon-blue bubble">Projects</a>
+            <a href="contact.html" class="hover:text-neon-blue bubble">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- PROJECTS -->
+<section class="py-20 pt-32">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-display mb-12">FEATURED <span class="text-neon-blue">PROJECTS</span></h2>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            <!-- Project 1 -->
+            <div class="glass p-4 rounded-xl reveal bubble card-hover">
+                <img src="https://source.unsplash.com/600x400/?website" class="rounded-lg mb-4">
+                <h3 class="font-bold text-xl">Modern Website</h3>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="glass p-4 rounded-xl reveal bubble delay-100 card-hover">
+                <img src="https://source.unsplash.com/600x400/?dashboard" class="rounded-lg mb-4">
+                <h3 class="font-bold text-xl">Admin Dashboard</h3>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="glass p-4 rounded-xl reveal bubble delay-200 card-hover">
+                <img src="https://source.unsplash.com/600x400/?app,ui" class="rounded-lg mb-4">
+                <h3 class="font-bold text-xl">Mobile App UI</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-6 text-center text-gray-500 text-sm">
+    © 2025 Ashique Mohammed. All Rights Reserved.
+</footer>
+
+<!-- SCROLL REVEAL -->
+<script>
+    const reveals = document.querySelectorAll(".reveal");
+    function reveal() {
+        reveals.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) el.classList.add("active");
+        });
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+</script>
+
+<!-- BUBBLE CLICK SCRIPT -->
+<script>
+    document.querySelectorAll('.bubble').forEach(el => {
+        el.addEventListener('click', function(e){
+            const circle = document.createElement('span');
+            const rect = el.getBoundingClientRect();
+            circle.style.left = `${e.clientX - rect.left - 50}px`;
+            circle.style.top = `${e.clientY - rect.top - 50}px`;
+            this.appendChild(circle);
+            setTimeout(() => circle.remove(), 600);
+        });
+    });
+</script>
+
+</body>
+</html>
